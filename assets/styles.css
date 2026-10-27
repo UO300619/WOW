@@ -1,0 +1,288 @@
+/* Codex de Azeroth — estilos
+ * Paleta "Medianoche": el azul del Vacío con el oro de la Fuente del Sol.
+ */
+:root {
+  --abismo: #0F1230;
+  --panel: #171B42;
+  --panel-alto: #1F2453;
+  --linea: #2E3470;
+  --oro: #E5BE62;
+  --oro-suave: rgba(229, 190, 98, 0.14);
+  --vacio: #A493FA;
+  --vacio-suave: rgba(164, 147, 250, 0.14);
+  --texto: #ECE9F7;
+  --suave: #A7AACD;
+  --bien: #7FD6A4;
+  --aviso: #F0A868;
+
+  --titulo: "Cinzel", "Trajan Pro", Georgia, serif;
+  --cuerpo: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
+
+  --ancho-lateral: 272px;
+  --radio: 10px;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--abismo);
+  color: var(--texto);
+  font-family: var(--cuerpo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--oro); text-underline-offset: 3px; }
+a:hover { color: #F3D58D; }
+:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; border-radius: 4px; }
+main:focus, main:focus-visible { outline: none; }
+
+.visualmente-oculto {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.saltar {
+  position: absolute; left: 12px; top: -48px; z-index: 50;
+  background: var(--oro); color: var(--abismo); padding: 8px 14px; border-radius: 6px;
+}
+.saltar:focus { top: 12px; }
+
+/* ------------------------------------------------------------------ */
+/* Barra lateral                                                       */
+/* ------------------------------------------------------------------ */
+.lateral {
+  position: fixed; inset: 0 auto 0 0; width: var(--ancho-lateral);
+  display: flex; flex-direction: column; gap: 20px;
+  padding: 28px 20px 20px;
+  background: linear-gradient(180deg, #121641 0%, #0C0F28 100%);
+  border-right: 1px solid var(--linea);
+  overflow-y: auto; z-index: 20;
+}
+.marca {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--titulo); font-weight: 700; font-size: 1.15rem;
+  color: var(--texto); text-decoration: none; letter-spacing: 0.02em;
+}
+.marca-eclipse {
+  width: 30px; height: 30px; border-radius: 50%; flex: none;
+  background: var(--abismo);
+  box-shadow: 3px -2px 0 1px var(--oro), 0 0 14px rgba(229, 190, 98, 0.45);
+}
+.buscador input {
+  width: 100%; padding: 10px 12px; border-radius: 8px;
+  background: var(--panel); color: var(--texto);
+  border: 1px solid var(--linea); font: inherit; font-size: 0.95rem;
+}
+.buscador input::placeholder { color: var(--suave); }
+.menu { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.menu a {
+  display: block; padding: 7px 12px; border-radius: 7px;
+  color: var(--suave); text-decoration: none; font-weight: 500;
+}
+.menu a:hover { color: var(--texto); background: var(--panel); }
+.menu a[aria-current="page"] {
+  color: var(--texto); background: var(--panel-alto);
+  box-shadow: inset 3px 0 0 var(--oro);
+}
+.menu-grupo {
+  margin: 14px 12px 4px; font-size: 0.82rem; color: var(--vacio); font-weight: 700;
+}
+.pie-lateral { margin-top: auto; font-size: 0.82rem; color: var(--suave); line-height: 1.5; }
+
+.barra-movil { display: none; }
+
+/* ------------------------------------------------------------------ */
+/* Contenido                                                           */
+/* ------------------------------------------------------------------ */
+main {
+  margin-left: var(--ancho-lateral);
+  padding: 48px clamp(20px, 5vw, 64px) 96px;
+  max-width: calc(var(--ancho-lateral) + 1040px);
+  outline: none;
+}
+.vista { animation: aparecer 0.25s ease-out; }
+@keyframes aparecer { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+h1, h2, h3 { font-family: var(--titulo); font-weight: 700; line-height: 1.2; letter-spacing: 0.01em; }
+h1 { font-size: clamp(2rem, 4vw, 2.9rem); margin: 0 0 12px; }
+h2 { font-size: 1.55rem; margin: 48px 0 14px; color: var(--oro); }
+h3 { font-size: 1.15rem; margin: 28px 0 10px; }
+p { margin: 0 0 14px; max-width: 72ch; }
+.entradilla { font-size: 1.2rem; color: var(--suave); max-width: 64ch; margin-bottom: 28px; }
+
+.aviso {
+  border: 1px solid rgba(229, 190, 98, 0.45); background: var(--oro-suave);
+  border-radius: var(--radio); padding: 16px 20px; margin: 20px 0 28px; max-width: 76ch;
+}
+.aviso strong { color: var(--oro); }
+
+/* Tablas */
+.tabla-envoltorio { overflow-x: auto; margin: 12px 0 24px; border: 1px solid var(--linea); border-radius: var(--radio); }
+table { width: 100%; border-collapse: collapse; font-size: 0.98rem; }
+th, td { text-align: left; padding: 11px 14px; vertical-align: top; }
+th { background: var(--panel-alto); font-weight: 700; color: var(--texto); white-space: nowrap; }
+tr + tr td { border-top: 1px solid var(--linea); }
+td.secundario { color: var(--suave); }
+
+/* Listas */
+ol.pasos { padding-left: 1.4em; max-width: 74ch; }
+ol.pasos li { margin-bottom: 10px; padding-left: 4px; }
+ol.pasos li::marker { color: var(--oro); font-family: var(--titulo); font-weight: 700; }
+ul.limpia { padding-left: 1.2em; max-width: 74ch; }
+ul.limpia li { margin-bottom: 8px; }
+
+/* ------------------------------------------------------------------ */
+/* Portada                                                             */
+/* ------------------------------------------------------------------ */
+.portada {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 40px;
+  padding: 24px 0 36px; border-bottom: 1px solid var(--linea);
+}
+.portada h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); }
+.portada p { font-size: 1.2rem; color: var(--suave); }
+
+/* El elemento memorable: un eclipse que pasa de la Fuente del Sol al Pozo Oscuro */
+.eclipse {
+  position: relative; width: clamp(180px, 22vw, 260px); aspect-ratio: 1;
+}
+.eclipse::before, .eclipse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; }
+.eclipse::before {
+  background: radial-gradient(circle, #FFF1C2 0%, var(--oro) 42%, rgba(229, 190, 98, 0) 70%);
+  filter: blur(2px);
+  animation: corona 9s ease-in-out infinite alternate;
+}
+.eclipse::after {
+  inset: 14%;
+  background: radial-gradient(circle at 40% 38%, #2A2466 0%, #0B0D24 70%);
+  box-shadow: inset -10px -8px 30px rgba(164, 147, 250, 0.35);
+  animation: paso 9s ease-in-out infinite alternate;
+}
+@keyframes corona { from { transform: scale(0.96); opacity: 0.85; } to { transform: scale(1.04); opacity: 1; } }
+@keyframes paso { from { transform: translate(14%, -6%); } to { transform: translate(0, 0); } }
+
+.resumen {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 32px 0 8px;
+}
+.bloque {
+  background: var(--panel); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 18px 20px;
+}
+.bloque h3 { margin-top: 0; font-size: 1.05rem; }
+.bloque p { margin: 0; color: var(--suave); font-size: 0.98rem; }
+.bloque .cifra { font-family: var(--titulo); font-size: 2rem; color: var(--oro); line-height: 1.1; margin: 4px 0 6px; }
+a.bloque { color: inherit; text-decoration: none; display: block; }
+a.bloque:hover { border-color: var(--oro); }
+
+/* ------------------------------------------------------------------ */
+/* Línea de tiempo                                                     */
+/* ------------------------------------------------------------------ */
+.linea-tiempo { list-style: none; margin: 16px 0 24px; padding: 0 0 0 28px; position: relative; max-width: 78ch; }
+.linea-tiempo::before {
+  content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px;
+  background: linear-gradient(var(--oro), var(--vacio));
+}
+.linea-tiempo li { position: relative; padding-bottom: 22px; }
+.linea-tiempo li::before {
+  content: ""; position: absolute; left: -26px; top: 7px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--abismo); border: 2px solid var(--oro);
+}
+.linea-tiempo li:first-child::before { background: var(--oro); }
+.hito { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.hito strong { font-family: var(--titulo); font-size: 1.05rem; }
+.hito .fecha { color: var(--vacio); font-weight: 700; font-size: 0.92rem; }
+.linea-tiempo p { color: var(--suave); margin: 4px 0 0; }
+
+/* Fuerzas cósmicas */
+.fuerzas { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 16px 0; }
+.fuerza { border-radius: var(--radio); padding: 18px 20px; border: 1px solid var(--linea); background: var(--panel); }
+.fuerza h3 { margin: 0 0 8px; }
+.fuerza:nth-child(1) { border-top: 3px solid var(--oro); }
+.fuerza:nth-child(2) { border-top: 3px solid var(--bien); }
+.fuerza:nth-child(3) { border-top: 3px solid var(--vacio); }
+.fuerza p { color: var(--suave); margin: 0; }
+
+/* ------------------------------------------------------------------ */
+/* Monturas                                                            */
+/* ------------------------------------------------------------------ */
+.progreso { margin: 8px 0 24px; max-width: 520px; }
+.progreso-texto { display: flex; justify-content: space-between; font-size: 0.95rem; color: var(--suave); margin-bottom: 6px; }
+.progreso-texto strong { color: var(--texto); }
+.barra { height: 10px; border-radius: 99px; background: var(--panel-alto); overflow: hidden; }
+.barra span { display: block; height: 100%; background: linear-gradient(90deg, var(--vacio), var(--oro)); border-radius: inherit; transition: width 0.3s; }
+
+.filtros { display: grid; gap: 14px; margin: 8px 0 22px; }
+.fila-filtros { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.fila-filtros > span { font-weight: 700; font-size: 0.92rem; color: var(--suave); margin-right: 4px; }
+.chip {
+  font: inherit; font-size: 0.92rem; padding: 6px 12px; border-radius: 99px; cursor: pointer;
+  background: transparent; color: var(--texto); border: 1px solid var(--linea);
+}
+.chip:hover { border-color: var(--suave); }
+.chip[aria-pressed="true"] { background: var(--oro); color: var(--abismo); border-color: var(--oro); font-weight: 700; }
+select, .campo {
+  font: inherit; font-size: 0.95rem; padding: 7px 10px; border-radius: 8px;
+  background: var(--panel); color: var(--texto); border: 1px solid var(--linea);
+}
+.interruptor { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.95rem; }
+.interruptor input { accent-color: var(--oro); width: 18px; height: 18px; }
+
+.lista-monturas { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.montura {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: start;
+  padding: 14px 16px; background: var(--panel); border: 1px solid var(--linea); border-radius: var(--radio);
+}
+.montura.conseguida { opacity: 0.6; }
+.montura.conseguida .nombre { text-decoration: line-through; text-decoration-color: var(--oro); }
+.montura input[type="checkbox"] { accent-color: var(--oro); width: 20px; height: 20px; margin-top: 3px; cursor: pointer; }
+.montura .nombre { font-weight: 700; font-size: 1.05rem; }
+.montura .ingles { color: var(--suave); font-size: 0.9rem; margin-left: 6px; }
+.montura .donde { color: var(--suave); font-size: 0.97rem; margin-top: 2px; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.etiqueta { font-size: 0.8rem; padding: 2px 9px; border-radius: 99px; white-space: nowrap; border: 1px solid var(--linea); color: var(--suave); }
+.etiqueta.seguro { color: var(--bien); border-color: rgba(127, 214, 164, 0.45); }
+.etiqueta.azar { color: var(--vacio); border-color: rgba(164, 147, 250, 0.45); }
+.etiqueta.temporal { color: var(--aviso); border-color: rgba(240, 168, 104, 0.45); }
+.wowhead { font-size: 0.88rem; }
+.vacio-estado { padding: 28px; text-align: center; color: var(--suave); border: 1px dashed var(--linea); border-radius: var(--radio); }
+
+.acciones { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; }
+.boton {
+  font: inherit; font-size: 0.95rem; font-weight: 700; padding: 8px 16px; border-radius: 8px; cursor: pointer;
+  background: var(--panel-alto); color: var(--texto); border: 1px solid var(--linea);
+}
+.boton:hover { border-color: var(--oro); }
+.boton.principal { background: var(--oro); color: var(--abismo); border-color: var(--oro); }
+.nota { font-size: 0.92rem; color: var(--suave); }
+
+/* ------------------------------------------------------------------ */
+/* Móvil                                                               */
+/* ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .barra-movil {
+    display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 30;
+    padding: 12px 16px; background: rgba(15, 18, 48, 0.94); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--linea);
+  }
+  .marca-movil { font-family: var(--titulo); font-weight: 700; }
+  .boton-menu {
+    font: inherit; font-weight: 700; padding: 6px 14px; border-radius: 8px; cursor: pointer;
+    background: var(--panel); color: var(--texto); border: 1px solid var(--linea);
+  }
+  .lateral { transform: translateX(-100%); transition: transform 0.25s; width: min(86vw, 320px); }
+  .lateral.abierta { transform: none; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5); }
+  main { margin-left: 0; padding: 28px 16px 72px; }
+  .portada { grid-template-columns: 1fr; }
+  .eclipse { width: 150px; order: -1; }
+  .montura { grid-template-columns: auto minmax(0, 1fr); }
+  .etiquetas { grid-column: 2; justify-content: flex-start; }
+  h2 { margin-top: 36px; }
+}

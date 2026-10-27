@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex de Azeroth</title>
+  <meta name="description" content="Guía de World of Warcraft en español: estado del juego, lore, monturas, armaduras y caballero de la muerte profano.">
+  <meta name="theme-color" content="#0F1230">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23E5BE62'/%3E%3Ccircle cx='18.5' cy='14.5' r='11' fill='%230F1230'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="barra-movil">
+    <button class="boton-menu" type="button" aria-expanded="false" aria-controls="lateral">Menú</button>
+    <span class="marca-movil">Codex de Azeroth</span>
+  </header>
+
+  <aside class="lateral" id="lateral">
+    <a class="marca" href="#inicio">
+      <span class="marca-eclipse" aria-hidden="true"></span>
+      <span>Codex de Azeroth</span>
+    </a>
+
+    <label class="buscador" for="busqueda-global">
+      <span class="visualmente-oculto">Buscar monturas</span>
+      <input id="busqueda-global" type="search" placeholder="Buscar montura…" autocomplete="off">
+    </label>
+
+    <nav aria-label="Secciones">
+      <ul class="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#estado">Estado del juego</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+        <li><a href="#lore">Lore</a></li>
+        <li class="menu-grupo">Colección</li>
+        <li><a href="#monturas">Monturas</a></li>
+        <li><a href="#vias">Cómo se consiguen</a></li>
+        <li><a href="#ruta">Ruta semanal</a></li>
+        <li><a href="#pandaria">Pandaria y dragones nimbo</a></li>
+        <li><a href="#armaduras">Armaduras y transfiguración</a></li>
+        <li class="menu-grupo">Clase</li>
+        <li><a href="#dk">Caballero de la muerte profano</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ul>
+    </nav>
+
+    <p class="pie-lateral">
+      Parche <span data-parche></span>, revisado el <span data-actualizado></span>.<br>
+      Proyecto de fans sin relación con Blizzard Entertainment.
+    </p>
+  </aside>
+
+  <main id="contenido" tabindex="-1"></main>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
